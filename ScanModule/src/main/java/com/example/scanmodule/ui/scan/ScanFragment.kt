@@ -32,28 +32,12 @@ class ScanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        saveButtonSetOnClickListener()
-        observeResultFromDataBase()
-    }
-
-    private fun saveButtonSetOnClickListener(){
-        save.setOnClickListener{
-            val userEntity= UserEntity(name=Description.text.toString())
-            viewModel.insertRecords(userEntity)
-            Description.setText("")
-        }
-    }
-    private fun observeResultFromDataBase(){
-        viewModel= ViewModelProvider(this)[ScanViewModel::class.java]
-        viewModel.getRecordsObserver().observe(viewLifecycleOwner,
-            { resultList ->
-                tv_result.text = ""
-                resultList?.forEach{
-                    tv_result.append(it.name+"\n")
-                }
-            })
 
     }
+
+
+
+
     }
 
 
