@@ -51,9 +51,12 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.example.scanmodule.Constant
 import com.example.scanmodule.Constant.CAMERA_PERMISSION_REQUEST_CODE
+import com.example.scanmodule.dataBase.CodeScanEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -67,7 +70,8 @@ class ScanFragment : Fragment() {
     private lateinit var beepManager: BeepManager
     private var isScanOnPause : Boolean = false
 
-    lateinit var viewModel: ScanViewModel
+    private val viewModel: ScanViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -83,7 +87,19 @@ class ScanFragment : Fragment() {
         checkCameraPermission()
         initScan()
 
+
+
+        viewModel.scanDataLiveData.observe(viewLifecycleOwner, { scanList->
+
+            Log.i("test_live_data", "scan data: " + scanList.size)
+            Description.text =""
+            scanList?.forEach{
+                Description.append(it.code.toString()+"\n")
+            }
+
+        })
     }
+
     private fun initScan() {
         run {
             val integrator = IntentIntegrator.forSupportFragment(this)
@@ -100,13 +116,16 @@ class ScanFragment : Fragment() {
             result?.let { resultScan ->
                 if (!isScanOnPause){
                     beepManager.playBeepSound()
-                    Log.i("test_scan", "new scan: " + resultScan.text)
-                  //  viewModel.insertRecords(UserEntity(1,"ahmed"))
                     pauseScan()
+                    Log.i("test_scan", "new scan: " + resultScan.text)
+                    val codeScanEntity= CodeScanEntity(code=resultScan.text.toString())
+                    viewModel.insertRecordCodeScan(codeScanEntity  )
+
                 }
 
             }
         }
+
 
         override fun possibleResultPoints(resultPoints: MutableList<ResultPoint>?) {}
     }
