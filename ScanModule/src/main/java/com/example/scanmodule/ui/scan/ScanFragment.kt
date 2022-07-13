@@ -1,6 +1,7 @@
 package com.example.scanmodule.ui.scan
 
 
+import android.Manifest
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.DialogInterface
@@ -50,7 +51,13 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.scanmodule.Constant
+import com.example.scanmodule.Constant.CAMERA_PERMISSION_REQUEST_CODE
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -58,6 +65,7 @@ import com.example.scanmodule.Constant
 class ScanFragment : Fragment() {
 
     private lateinit var beepManager: BeepManager
+    private var isScanOnPause : Boolean = false
 
     lateinit var viewModel: ScanViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,33 +98,40 @@ class ScanFragment : Fragment() {
     private val barcodeCallback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult?) {
             result?.let { resultScan ->
-                Log.i("test_scan", "new scan: " + resultScan.text)
+                if (!isScanOnPause){
+                    beepManager.playBeepSound()
+                    Log.i("test_scan", "new scan: " + resultScan.text)
+                  //  viewModel.insertRecords(UserEntity(1,"ahmed"))
+                    pauseScan()
+                }
+
             }
         }
 
         override fun possibleResultPoints(resultPoints: MutableList<ResultPoint>?) {}
     }
 
-    private fun checkCameraPermission() {
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle("Grant Permission")
-        builder.setMessage("You have rejected the Storage permission for the application. ")
-        builder.setPositiveButton("Allow") { dialog, which ->
-            val intent = Intent()
-            intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-            val uri = Uri.fromParts("package", context?.packageName, null)
-            intent.data = uri
-            context?.startActivity(intent)
+    private fun pauseScan(){
+        isScanOnPause = true
+
+        lifecycleScope.launch(Dispatchers.IO){
+            delay(1000)
+            isScanOnPause = false
         }
-        builder.setNeutralButton("Deny") { dialog, which ->
 
-            dialog.dismiss()
+
+
+
+    }
+
+    private fun checkCameraPermission(){
+        if (ContextCompat.checkSelfPermission(requireActivity(),Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSION_REQUEST_CODE
+            );
         }
-        val dialog = builder.create()
-        dialog.show()
-
-
-
     }
 
 

@@ -12,4 +12,6 @@ interface AppDAO {
     fun inserRecord(userEntity:UserEntity)
 
 
+  //  ----------- scan -------------
+
 }
