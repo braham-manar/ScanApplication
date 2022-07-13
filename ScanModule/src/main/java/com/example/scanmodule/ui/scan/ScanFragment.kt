@@ -64,7 +64,7 @@ class ScanFragment : Fragment() {
    // }
 
 
-    private val permissions =
+    /*private val permissions =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { granted ->
             granted.entries.forEach {
                 when (it.value) {
@@ -76,9 +76,9 @@ class ScanFragment : Fragment() {
                     }
                 }
             }
-        }
+        }*/
 
-    private fun showPermissionSettingsAlert(requireContext: Context) {
+  /*private fun showPermissionSettingsAlert(requireContext: Context) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Grant Permission")
         builder.setMessage("You have rejected the Storage permission for the application. As it is absolutely necessary for the app to perform you need to enable it in the settings of your device. Please select \"Go to settings\" to go to application settings in your device.")
@@ -95,7 +95,7 @@ class ScanFragment : Fragment() {
         }
         val dialog = builder.create()
         dialog.show()
-    }
+    }*/
     private lateinit var beepManager: BeepManager
 
     lateinit var viewModel: ScanViewModel
@@ -137,21 +137,24 @@ class ScanFragment : Fragment() {
     }
 
     private fun checkCameraPermission() {
-
-        if (allPermissionGranted()) {
-            Toast.makeText(
-                requireContext(),
-                "we have all permission",
-                Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            ActivityCompat.requestPermissions(
-                requireContext() as Activity,
-                Constant.REQUIRED_PERMISSION,
-                Constant.REQUEST_CODE_PERMISSION
-            )
-
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Grant Permission")
+        builder.setMessage("You have rejected the Storage permission for the application. ")
+        builder.setPositiveButton("Allow") { dialog, which ->
+            val intent = Intent()
+            intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+            val uri = Uri.fromParts("package", context?.packageName, null)
+            intent.data = uri
+            context?.startActivity(intent)
         }
+        builder.setNeutralButton("Deny") { dialog, which ->
+
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
+
+
 
     }
 
@@ -161,13 +164,6 @@ class ScanFragment : Fragment() {
         scan_barcode?.resume()
     }
 
-
-   private fun allPermissionGranted() =
-        Constant.REQUIRED_PERMISSION.all {
-            ContextCompat.checkSelfPermission(
-                requireContext(), it
-            ) == PackageManager.PERMISSION_GRANTED
-        }
 }
 
 
