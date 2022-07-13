@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.scanmodule">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera.any" android:required="false" />
 
     <application
-        android:name=".MyDemoApp"
-        >
-
-
+        android:name=".MyDemoApp">
         <activity
             android:name=".ui.MainActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
 
     </application>
 
