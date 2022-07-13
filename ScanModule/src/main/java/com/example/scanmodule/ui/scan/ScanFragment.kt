@@ -56,46 +56,7 @@ import com.example.scanmodule.Constant
 @AndroidEntryPoint
 
 class ScanFragment : Fragment() {
-   // lateinit var mContext: Context
-    //override fun onAttach(context: Context) {
-        //super.onAttach(context)
-       // mContext = context
 
-   // }
-
-
-    /*private val permissions =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { granted ->
-            granted.entries.forEach {
-                when (it.value) {
-                    true -> {
-                        // Call whatever you want to do when someone allow the permission.
-                    }
-                    false -> {
-                        showPermissionSettingsAlert(requireContext())
-                    }
-                }
-            }
-        }*/
-
-  /*private fun showPermissionSettingsAlert(requireContext: Context) {
-        val builder = AlertDialog.Builder(context)
-        builder.setTitle("Grant Permission")
-        builder.setMessage("You have rejected the Storage permission for the application. As it is absolutely necessary for the app to perform you need to enable it in the settings of your device. Please select \"Go to settings\" to go to application settings in your device.")
-        builder.setPositiveButton("Allow") { dialog, which ->
-            val intent = Intent()
-            intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-            val uri = Uri.fromParts("package", context?.packageName, null)
-            intent.data = uri
-            context?.startActivity(intent)
-        }
-        builder.setNeutralButton("Deny") { dialog, which ->
-
-            dialog.dismiss()
-        }
-        val dialog = builder.create()
-        dialog.show()
-    }*/
     private lateinit var beepManager: BeepManager
 
     lateinit var viewModel: ScanViewModel
