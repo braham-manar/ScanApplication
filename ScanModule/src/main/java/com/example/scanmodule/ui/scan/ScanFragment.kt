@@ -54,8 +54,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.scanmodule.Constant
 import com.example.scanmodule.Constant.CAMERA_PERMISSION_REQUEST_CODE
+import com.example.scanmodule.NewAdapter
 import com.example.scanmodule.dataBase.CodeScanEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -66,6 +68,8 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 
 class ScanFragment : Fragment() {
+    lateinit var my_Adapter:NewAdapter
+    lateinit var linearLayoutManager: LinearLayoutManager
 
     private lateinit var beepManager: BeepManager
     private var isScanOnPause : Boolean = false
@@ -88,16 +92,27 @@ class ScanFragment : Fragment() {
         initScan()
 
 
-
         viewModel.scanDataLiveData.observe(viewLifecycleOwner, { scanList->
-
             Log.i("test_live_data", "scan data: " + scanList.size)
-            Description.text =""
-            scanList?.forEach{
-                Description.append(it.code.toString()+"\n")
-            }
+            initrecycle()
+
+            my_Adapter.setDataToAdapter(scanList as ArrayList<CodeScanEntity>)
+
+            /* Description.text =""
+                       scanList?.forEach{
+                           Description.append(it.code.toString()+"\n")
+                       }*/
 
         })
+    }
+     fun initrecycle(){
+        linearLayoutManager= LinearLayoutManager(activity)
+        recycle_view.layoutManager= linearLayoutManager
+        recycle_view?.setHasFixedSize(true)
+         my_Adapter= NewAdapter()
+         recycle_view.adapter=my_Adapter
+       // my_Adapter.setAdapterListener(this)
+
     }
 
     private fun initScan() {
