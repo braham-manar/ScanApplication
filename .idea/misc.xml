@@ -4,8 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.19895833333333332" />
-        <entry key="ScanModule/src/main/res/layout/activity_scan.xml" value="0.15" />
-        <entry key="ScanModule/src/main/res/layout/fragment_scan.xml" value="0.1" />
+        <entry key="ScanModule/src/main/res/layout/activity_scan.xml" value="0.22" />
+        <entry key="ScanModule/src/main/res/layout/fragment_scan.xml" value="0.25" />
         <entry key="ScanModule/src/main/res/layout/item_recycler_view.xml" value="0.14270833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18385416666666668" />
       </map>
