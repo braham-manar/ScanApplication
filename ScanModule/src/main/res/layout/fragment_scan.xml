@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.scan.ScanFragment"
+
     >
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
@@ -21,9 +22,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view"
-        android:layout_width="409dp"
-        android:layout_height="312dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/ScrolName"
         app:layout_constraintEnd_toEndOf="@+id/scan_barcode"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,105 +36,198 @@
         android:id="@+id/ScrolName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
         app:layout_constraintEnd_toEndOf="@+id/recycle_view"
-        app:layout_constraintStart_toStartOf="@+id/recycle_view"
-        app:layout_constraintTop_toBottomOf="@+id/recycle_view">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/recycle_view">
 
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/Chip_group_function"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="60dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recycle_view"
             app:singleLine="true"
-            app:singleSelection="true">
+            app:singleSelection="true"
+            app:selectionRequired="true"
+
+            >
 
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/receptionChip"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reception"
-                android:textAlignment="center"
-              />
+                android:layout_height="50dp"
+                android:text="reception"
+                android:textColor="@drawable/chip_text_color"
+                app:checkedIcon="@drawable/ic_reception"
+                app:checkedIconEnabled="true"
+                app:checkedIconTint="#ffffff"
+                app:chipBackgroundColor="@drawable/chip_background_color"
+                app:chipEndPadding="14dp"
+                app:chipIcon="@drawable/ic_reception"
+                app:chipIconEnabled="true"
+                app:chipIconTint="@color/chip_color_checked"
+                app:iconStartPadding="6dp"
+                android:checked="true"
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chargementChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="chargement"
-                tools:layout_editor_absoluteX="101dp"
-                tools:layout_editor_absoluteY="619dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/DégroupementChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dégroupement"
-                 />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/Mise_en_rayon_Chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mise en rayon"
                 />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/preparation_Chip"
+                android:id="@+id/chargementChip"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:text="preparation"
-                app:layout_constraintEnd_toStartOf="@+id/Mise_en_rayon_Chip"
-                app:layout_constraintStart_toEndOf="@+id/receptionChip"
-                app:layout_constraintTop_toBottomOf="@+id/nav_host_fragment" />
+                android:layout_height="50dp"
+                android:text="chargement"
+                android:textColor="@drawable/chip_text_color"
+                app:checkedIcon="@drawable/ic_cargo_box"
+                app:checkedIconEnabled="true"
+                app:checkedIconTint="#ffffff"
+                app:chipBackgroundColor="@drawable/chip_background_color"
+                app:chipEndPadding="14dp"
+                app:chipIcon="@drawable/ic_cargo_box"
+                app:chipIconEnabled="true"
+                app:chipIconTint="@color/chip_color_checked"
+                app:iconStartPadding="6dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/degroupementChip"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Degroupement"
+                android:textColor="@drawable/chip_text_color"
+                app:checkedIcon="@drawable/ic_degroupement"
+                app:checkedIconEnabled="true"
+                app:checkedIconTint="#ffffff"
+                app:chipBackgroundColor="@drawable/chip_background_color"
+                app:chipEndPadding="14dp"
+                app:chipIcon="@drawable/ic_degroupement"
+                app:chipIconEnabled="true"
+                app:chipIconTint="@color/chip_color_checked"
+                app:iconStartPadding="6dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/miseEnRayonChip"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Mise en rayon"
+                android:textColor="@drawable/chip_text_color"
+                app:checkedIcon="@drawable/ic_boxes"
+                app:checkedIconEnabled="true"
+                app:checkedIconTint="#ffffff"
+                app:chipBackgroundColor="@drawable/chip_background_color"
+                app:chipEndPadding="14dp"
+                app:chipIcon="@drawable/ic_boxes"
+                app:chipIconEnabled="true"
+                app:chipIconTint="@color/chip_color_checked"
+                app:iconStartPadding="6dp"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/preparationChip"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="préparation"
+                android:textColor="@drawable/chip_text_color"
+                app:checkedIcon="@drawable/ic_preparation"
+                app:checkedIconEnabled="true"
+                app:checkedIconTint="#ffffff"
+                app:chipBackgroundColor="@drawable/chip_background_color"
+                app:chipEndPadding="14dp"
+                app:chipIcon="@drawable/ic_preparation"
+                app:chipIconEnabled="true"
+                app:chipIconTint="@color/chip_color_checked"
+                app:iconStartPadding="6dp" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/livraisonChip"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="livraison"
+                android:textColor="@drawable/chip_text_color"
+                app:checkedIcon="@drawable/ic_box"
+                app:checkedIconEnabled="true"
+                app:checkedIconTint="#ffffff"
+                app:chipBackgroundColor="@drawable/chip_background_color"
+                app:chipEndPadding="14dp"
+                app:chipIcon="@drawable/ic_box"
+                app:chipIconEnabled="true"
+                app:chipIconTint="@color/chip_color_checked"
+                app:iconStartPadding="6dp" />
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
+
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ScrolName"
-        app:layout_constraintStart_toStartOf="@+id/ScrolName"
-        app:layout_constraintTop_toBottomOf="@+id/ScrolName">
+        app:layout_constraintStart_toStartOf="@+id/ScrolName">
 
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/ChipGroupeScanType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="60dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recycle_view"
             app:singleLine="true"
-            app:singleSelection="true">
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            >
 
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/conformeChip"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Conforme"
-                android:textAlignment="center"
-              />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/ReserveChip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reserve"
+                android:layout_height="50dp"
+                android:text="conforme"
+                android:textColor="@drawable/chip_text_color"
+                app:checkedIcon="@drawable/ic_confirm"
+                app:checkedIconEnabled="true"
+                app:checkedIconTint="#ffffff"
+                app:chipBackgroundColor="@drawable/chip_background_color"
+                app:chipEndPadding="14dp"
+                app:chipIcon="@drawable/ic_confirm"
+                app:chipIconEnabled="true"
+                app:chipIconTint="@color/chip_color_checked"
+                app:iconStartPadding="6dp"
+                android:checked="true"
                 />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/RefusChip"
+                android:id="@+id/reserveChip"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:text="Reserve"
+                android:textColor="@drawable/chip_text_color"
+                app:checkedIcon="@drawable/ic_recu_avec"
+                app:checkedIconEnabled="true"
+                app:checkedIconTint="#ffffff"
+                app:chipBackgroundColor="@drawable/chip_background_color"
+                app:chipEndPadding="14dp"
+                app:chipIcon="@drawable/ic_recu_avec"
+                app:chipIconEnabled="true"
+                app:chipIconTint="@color/chip_color_checked"
+                app:iconStartPadding="6dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/refusChip"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
                 android:text="Refus"
-                 />
+                android:textColor="@drawable/chip_text_color"
+                app:checkedIcon="@drawable/ic_degroupement"
+                app:checkedIconEnabled="true"
+                app:checkedIconTint="#ffffff"
+                app:chipBackgroundColor="@drawable/chip_background_color"
+                app:chipEndPadding="14dp"
+                app:chipIcon="@drawable/ic_refus"
+                app:chipIconEnabled="true"
+                app:chipIconTint="@color/chip_color_checked"
+                app:iconStartPadding="6dp" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>

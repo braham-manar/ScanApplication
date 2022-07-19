@@ -2,6 +2,7 @@ package com.example.scanmodule.ui.scan
 
 
 import android.Manifest
+
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_scan.*
 
 
 import android.content.pm.PackageManager
+import androidx.appcompat.content.res.AppCompatResources.getColorStateList
 
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -28,11 +30,17 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.scanmodule.Constant.CAMERA_PERMISSION_REQUEST_CODE
 import com.example.scanmodule.NewAdapter
+
 import com.example.scanmodule.dataBase.CodeScanEntity
 import com.example.scanmodule.ui.scan.adapter.ScanListAdapter
+import com.google.android.material.chip.Chip
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
+import android.R
+import android.R.attr
+import android.R.attr.*
 
 
 @AndroidEntryPoint
@@ -53,6 +61,7 @@ class ScanFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(com.example.scanmodule.R.layout.fragment_scan, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,6 +82,8 @@ class ScanFragment : Fragment() {
                        }*/
 
         })
+
+        chipGroupScanTypeSetOnCheckedStateChangeListener()
     }
      fun initrecycle(){
         linearLayoutManager= LinearLayoutManager(activity)
@@ -142,8 +153,44 @@ class ScanFragment : Fragment() {
         super.onResume()
         scan_barcode?.resume()
     }
+    private fun  chipGroupScanTypeSetOnCheckedStateChangeListener() {
+        ChipGroupeScanType.setOnCheckedStateChangeListener { group, checkedId ->
 
-}
+           when(group.checkedChipId){
+               conformeChip.id -> { Log.i("test_chip", "conformeChip")}
+               reserveChip.id -> { Log.i("test_chip", "reserveChip")}
+               refusChip.id -> { Log.i("test_chip", "refusChip")}
+
+           }
+            Chip_group_function.setOnCheckedStateChangeListener { group, checkedIds ->
+                when(group.checkedChipId){
+                    receptionChip.id -> { Log.i("test_function_chip", "receptionChip")}
+                    chargementChip.id -> { Log.i("test_function_chip", "chargementChip")}
+                    degroupementChip.id -> { Log.i("test_function_chip", "degroupementChip")}
+                   miseEnRayonChip.id -> { Log.i("test_function_chip", "miseEnRayonChip")}
+                    preparationChip.id -> { Log.i("test_function_chip", "preparationChip")}
+                    livraisonChip.id -> { Log.i("test_function_chip", "livraisonChip")}
+
+                }
+            }
+
+
+
+            /* if(group.checkedChipIds==receptionChip){
+
+                 }*/
+
+        //    when (group.checkedChipIds){
+          //  checkedId ->
+
+            }
+
+
+
+
+            }}
+
+
 
 
 
