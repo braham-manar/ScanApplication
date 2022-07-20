@@ -1,4 +1,4 @@
-package com.example.scanmodule.dataBase
+package com.example.scanmodule.data.dataBase
 
 import android.content.Context
 import androidx.room.Database

@@ -1,9 +1,8 @@
 package com.example.scanmodule.DaggerInjection
 
 import android.app.Application
-import android.content.Context
-import com.example.scanmodule.dataBase.AppDAO
-import com.example.scanmodule.dataBase.AppDataBase
+import com.example.scanmodule.data.dataBase.AppDAO
+import com.example.scanmodule.data.dataBase.AppDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

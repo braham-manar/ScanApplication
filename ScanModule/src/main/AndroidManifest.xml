@@ -9,10 +9,14 @@
         android:required="false" />
 
     <application
-        android:name=".MyDemoApp">
+        android:name=".MyDemoApp"
+
+        >
         <activity
             android:name=".ui.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+
+            />
 
     </application>
 

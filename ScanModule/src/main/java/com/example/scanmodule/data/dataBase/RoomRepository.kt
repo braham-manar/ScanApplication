@@ -1,4 +1,4 @@
-package com.example.scanmodule.dataBase
+package com.example.scanmodule.data.dataBase
 
 import androidx.lifecycle.LiveData
 import javax.inject.Inject

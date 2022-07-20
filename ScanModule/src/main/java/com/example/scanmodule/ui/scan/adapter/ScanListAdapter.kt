@@ -1,8 +1,8 @@
 package com.example.scanmodule.ui.scan.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.util.Log
-import android.view.FrameStats
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,26 +12,40 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scanmodule.R
-import com.example.scanmodule.dataBase.CodeScanEntity
-import com.example.scanmodule.ui.scan.ScanFragment
+import com.example.scanmodule.data.dataBase.CodeScanEntity
 import com.example.scanmodule.util.ScanPhase
 import com.example.scanmodule.util.ScanType
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
-import kotlinx.android.synthetic.main.fragment_scan.*
-import kotlinx.android.synthetic.main.item_recycler_view.*
 
 
 class ScanListAdapter : ListAdapter<CodeScanEntity,
         RecyclerView.ViewHolder>(ScanDiffCallback()) {
+
     private lateinit  var mListener : AdapterInteraction
     fun setAdapterInteractionListener (listner: ScanListAdapter.AdapterInteraction){
         mListener= listner
+
     }
+    override fun getItemCount(): Int {
+        return currentList.size
+    }
+
+    override fun onCurrentListChanged(
+        previousList: MutableList<CodeScanEntity>,
+        currentList: MutableList<CodeScanEntity>
+    ) {
+        super.onCurrentListChanged(previousList, currentList)
+        Log.i("test_onCurrent", "onCurrentListChanged: ")
+        mListener?.onCurrentListChanged()
+    }
+
+
     interface AdapterInteraction {
         fun onItemClick(position: Int)
-       // fun onDeleteButtonClicked(i: Int)}
-        fun onDeleteButtonClicked(i: CodeScanEntity)}
+       // fun onDeleteButtonClicked(code: String)}
+        fun onDeleteButtonClicked(i: CodeScanEntity)
+         fun onCurrentListChanged ()
+
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScannedObjectViewHolder {
@@ -40,6 +54,7 @@ class ScanListAdapter : ListAdapter<CodeScanEntity,
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val rvHolder = (holder as ScannedObjectViewHolder)
 
@@ -60,9 +75,7 @@ class ScanListAdapter : ListAdapter<CodeScanEntity,
              rvHolder.tvScanType.setBackgroundColor(Color.parseColor( ScanType.REFUS.color ))
              rvHolder.tvScanType.text = ScanType.REFUS.code
 
-         }
-
-     }
+         } }
         when(currentScan.scan_phase)   {
          ScanPhase.RECEPTION.description -> {
              rvHolder.tvScanPhase.text = ScanPhase.RECEPTION.code
@@ -84,6 +97,7 @@ class ScanListAdapter : ListAdapter<CodeScanEntity,
             }
 
 
+
      }
       /*  ChipGroupeScanType?.setOnCheckedStateChangeListener { group, checkedId ->
             when(group.checkedChipId){
@@ -92,35 +106,33 @@ class ScanListAdapter : ListAdapter<CodeScanEntity,
                     tvTypeHolder.tvScanType.setBackgroundColor(Color.parseColor("#8E24AA"))
                 }}}
 */
-
         holder.itemView.setOnClickListener {  }
         holder.IVdelete.setOnClickListener {
             mListener.onDeleteButtonClicked(currentScan)
 
         }
+
+
     }
 
 
 
     class ScannedObjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         val tvScanValue = itemView.findViewById(R.id.TV_Code_Scan) as TextView
-        val tvScanType=itemView.findViewById(R.id.TV_Type) as TextView
-        val tvScanPhase=itemView.findViewById(R.id.TV_Phase) as TextView
-        val IVdelete=itemView.findViewById(R.id.IVdelete) as ImageView
+        val tvScanType = itemView.findViewById(R.id.TV_Type) as TextView
+        val tvScanPhase = itemView.findViewById(R.id.TV_Phase) as TextView
+        val IVdelete = itemView.findViewById(R.id.IVdelete) as ImageView
 
 
     }
     private class ScanDiffCallback : DiffUtil.ItemCallback<CodeScanEntity>() {
         override fun areItemsTheSame(oldItem: CodeScanEntity, newItem: CodeScanEntity): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.code == newItem.code
         }
 
         override fun areContentsTheSame(oldItem: CodeScanEntity, newItem: CodeScanEntity): Boolean {
-            return oldItem.id == newItem.id
+            return(oldItem.code == newItem.code  && oldItem.scan_type == newItem.scan_type && oldItem.scan_phase == newItem.scan_phase )
+        } }
+
         }
-
-    }
-
-
-
-}

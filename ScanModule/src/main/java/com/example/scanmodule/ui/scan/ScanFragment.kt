@@ -28,7 +28,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.scanmodule.Constant.CAMERA_PERMISSION_REQUEST_CODE
 
-import com.example.scanmodule.dataBase.CodeScanEntity
+import com.example.scanmodule.data.dataBase.CodeScanEntity
 import com.example.scanmodule.ui.scan.adapter.ScanListAdapter
 import com.example.scanmodule.util.ScanPhase
 import kotlinx.coroutines.Dispatchers
@@ -36,7 +36,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 import com.example.scanmodule.util.ScanType
-import kotlinx.android.synthetic.main.item_recycler_view.*
+import android.R
+import androidx.appcompat.app.ActionBar
+import androidx.recyclerview.widget.RecyclerView
 
 
 @AndroidEntryPoint
@@ -69,11 +71,13 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
         initScan()
         initrecycle()
 
+
+
         viewModel.scanDataLiveData.observe(viewLifecycleOwner, { scanList->
             Log.i("test_live_data", "scan data: " + scanList.size)
          //   my_Adapter.setDataToAdapter(scanList )
             my_Adapter.submitList(scanList)
-
+            scanNumb.text =  scanList.size.toString()
 
             /* Description.text =""
                        scanList?.forEach{
@@ -84,6 +88,25 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
         my_Adapter?.setAdapterInteractionListener(this)
 
         chipGroupScanTypeSetOnCheckedStateChangeListener()
+
+
+
+
+
+
+        recycle_view?.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                Log.i("test_scroll_rv", "dx: " +dx)
+                Log.i("test_scroll_rv", "dy: " + dy)
+                Log.i("test_scroll_rv", "-------------------------------------------------")
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
     }
      fun initrecycle(){
         linearLayoutManager= LinearLayoutManager(activity)
@@ -210,6 +233,13 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
     override fun onDeleteButtonClicked(scanId:CodeScanEntity) {
 
             viewModel.delete(scanId)
+
+    }
+
+    override fun onCurrentListChanged() {
+        Log.i("test_scroll", "onCurrentListChanged: scan fragment ")
+        recycle_view?.smoothScrollToPosition(0)
+
 
     }
     // private fun choice function_or_Type(){

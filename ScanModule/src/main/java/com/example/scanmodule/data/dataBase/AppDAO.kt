@@ -1,4 +1,4 @@
-package com.example.scanmodule.dataBase
+package com.example.scanmodule.data.dataBase
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -21,12 +21,12 @@ interface AppDAO {
   fun getRecordsCodeScanAsLiveData():LiveData<List<CodeScanEntity>>
 
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserRecordCodeScan(codeScanEntity: CodeScanEntity)
 
     @Delete
     fun delete(codeScanEntity: CodeScanEntity)
 
-    @Query("DELETE FROM codeScan WHERE id = :scanId")
-    fun delete(scanId: Int)
+    @Query("DELETE FROM codeScan WHERE code = :code")
+    fun delete(code: String)
 }
