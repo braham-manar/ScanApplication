@@ -22,4 +22,8 @@ class RoomRepository @Inject constructor(private val appDAO:AppDAO) {
         fun insertRecordCodeScan(codeScanEntity: CodeScanEntity){
             appDAO.inserRecordCodeScan(codeScanEntity)
         }
+        fun delete(codeScanEntity: CodeScanEntity){
+            appDAO.delete(codeScanEntity)
+
+    }
 }

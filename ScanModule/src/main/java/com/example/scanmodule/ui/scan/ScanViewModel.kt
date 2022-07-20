@@ -24,5 +24,11 @@ class ScanViewModel @Inject constructor(private val repository: RoomRepository):
     }
 
 
-}
+    fun delete(codeScanEntity: CodeScanEntity){
+        viewModelScope.launch(Dispatchers.Default){
+            repository.delete(codeScanEntity)
+
+    }
+
+}}
 

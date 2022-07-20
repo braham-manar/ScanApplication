@@ -1,15 +1,14 @@
 package com.example.scanmodule.dataBase
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface AppDAO {
     @Query("SELECT * FROM user ORDER BY id DESC")
     fun getRecords():List<UserEntity>
-    @Insert
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserRecord(userEntity:UserEntity)
 
 
@@ -18,10 +17,16 @@ interface AppDAO {
   fun getRecordsCodeScan():List<CodeScanEntity>
 
 
-   @Query("SELECT * FROM codeScan ORDER BY code DESC")
+   @Query("SELECT * FROM codeScan ORDER BY scan_date DESC ")
   fun getRecordsCodeScanAsLiveData():LiveData<List<CodeScanEntity>>
 
 
     @Insert
     fun inserRecordCodeScan(codeScanEntity: CodeScanEntity)
+
+    @Delete
+    fun delete(codeScanEntity: CodeScanEntity)
+
+    @Query("DELETE FROM codeScan WHERE id = :scanId")
+    fun delete(scanId: Int)
 }

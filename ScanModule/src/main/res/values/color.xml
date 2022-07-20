@@ -3,4 +3,5 @@
     <color name="purple_200">#FFBB86FC</color>
     <color name="chip_color_checked">#FF673AB7</color>
     <color name="chip_color_not_checked">#73673AB7</color>
+    <color name="tv_type">#EC9009</color>
 </resources>

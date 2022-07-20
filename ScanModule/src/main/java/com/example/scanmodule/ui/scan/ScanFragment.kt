@@ -20,38 +20,35 @@ import kotlinx.android.synthetic.main.fragment_scan.*
 
 
 import android.content.pm.PackageManager
-import androidx.appcompat.content.res.AppCompatResources.getColorStateList
 
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.scanmodule.Constant.CAMERA_PERMISSION_REQUEST_CODE
-import com.example.scanmodule.NewAdapter
 
 import com.example.scanmodule.dataBase.CodeScanEntity
 import com.example.scanmodule.ui.scan.adapter.ScanListAdapter
-import com.google.android.material.chip.Chip
+import com.example.scanmodule.util.ScanPhase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-import android.R
-import android.R.attr
-import android.R.attr.*
+import com.example.scanmodule.util.ScanType
+import kotlinx.android.synthetic.main.item_recycler_view.*
 
 
 @AndroidEntryPoint
 
-class ScanFragment : Fragment() {
+class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
     lateinit var my_Adapter: ScanListAdapter
     lateinit var linearLayoutManager: LinearLayoutManager
 
     private lateinit var beepManager: BeepManager
     private var isScanOnPause : Boolean = false
-
+    private var scanType : String= ScanType.CONFORM.description
+    private var scanPhase : String= ScanPhase.RECEPTION.description
     private val viewModel: ScanViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,14 +61,16 @@ class ScanFragment : Fragment() {
 
         return inflater.inflate(com.example.scanmodule.R.layout.fragment_scan, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         checkCameraPermission()
         initScan()
+        initrecycle()
+
         viewModel.scanDataLiveData.observe(viewLifecycleOwner, { scanList->
             Log.i("test_live_data", "scan data: " + scanList.size)
-            initrecycle()
          //   my_Adapter.setDataToAdapter(scanList )
             my_Adapter.submitList(scanList)
 
@@ -82,6 +81,7 @@ class ScanFragment : Fragment() {
                        }*/
 
         })
+        my_Adapter?.setAdapterInteractionListener(this)
 
         chipGroupScanTypeSetOnCheckedStateChangeListener()
     }
@@ -113,7 +113,9 @@ class ScanFragment : Fragment() {
                     beepManager.playBeepSound()
                     pauseScan()
                     Log.i("test_scan", "new scan: " + resultScan.text)
-                    val codeScanEntity= CodeScanEntity(code=resultScan.text.toString())
+                    val codeScanEntity= CodeScanEntity(code =resultScan.text.toString(),
+                        scan_type = scanType , scan_date = System.currentTimeMillis(),
+                    scan_phase=scanPhase)
                     viewModel.insertRecordCodeScan(codeScanEntity  )
 
                 }
@@ -132,9 +134,6 @@ class ScanFragment : Fragment() {
             delay(1000)
             isScanOnPause = false
         }
-
-
-
 
     }
 
@@ -157,22 +156,66 @@ class ScanFragment : Fragment() {
         ChipGroupeScanType.setOnCheckedStateChangeListener { group, checkedId ->
 
            when(group.checkedChipId){
-               conformeChip.id -> { Log.i("test_chip", "conformeChip")}
-               reserveChip.id -> { Log.i("test_chip", "reserveChip")}
-               refusChip.id -> { Log.i("test_chip", "refusChip")}
+               conformeChip.id -> {
+                   scanType = ScanType.CONFORM.description
+                   Log.i("test_chip", "conformeChip")
+                   //TV_Type.setBackgroundColor(Color.parseColor("#8E24AA"))
+               }
+               reserveChip.id -> {
+                   scanType = ScanType.RESERVE.description
+
+                   Log.i("test_chip", "reserveChip")}
+                  // TV_Type.setBackgroundColor(Color.RED)}
+
+               refusChip.id -> {
+                   scanType = ScanType.REFUS.description
+
+                   Log.i("test_chip", "refusChip")}
+                  // TV_Type.setBackgroundColor(Color.parseColor("#EC9009"))}
 
            }
-            Chip_group_function.setOnCheckedStateChangeListener { group, checkedIds ->
-                when(group.checkedChipId){
-                    receptionChip.id -> { Log.i("test_function_chip", "receptionChip")}
-                    chargementChip.id -> { Log.i("test_function_chip", "chargementChip")}
-                    degroupementChip.id -> { Log.i("test_function_chip", "degroupementChip")}
-                   miseEnRayonChip.id -> { Log.i("test_function_chip", "miseEnRayonChip")}
-                    preparationChip.id -> { Log.i("test_function_chip", "preparationChip")}
-                    livraisonChip.id -> { Log.i("test_function_chip", "livraisonChip")}
+           }
 
-                }
+        Chip_group_function.setOnCheckedStateChangeListener { group, checkedIds ->
+            when(group.checkedChipId){
+                receptionChip.id -> {
+                    scanPhase=ScanPhase.RECEPTION.description
+                    Log.i("test_function_chip", "receptionChip")}
+                chargementChip.id -> {
+                    scanPhase=ScanPhase.CHARGEMENT.description
+                    Log.i("test_function_chip", "chargementChip")}
+                degroupementChip.id -> {
+                    scanPhase=ScanPhase.DEGROUPEMENT.description
+                    Log.i("test_function_chip", "degroupementChip")}
+                miseEnRayonChip.id -> {
+                    scanPhase=ScanPhase.MISE_EN_RAYON.description
+
+                    Log.i("test_function_chip", "miseEnRayonChip")}
+                preparationChip.id -> {
+                    scanPhase=ScanPhase.PREPARATION.description
+                    Log.i("test_function_chip", "preparationChip")}
+                livraisonChip.id -> {
+                    scanPhase=ScanPhase.LIVRAISON.description
+                    Log.i("test_function_chip", "livraisonChip")}
+
             }
+
+        }
+    }
+
+    override fun onItemClick(position: Int) {
+        Log.i("test_adapter_inte", "onItemClick: $position")
+    }
+
+    override fun onDeleteButtonClicked(scanId:CodeScanEntity) {
+
+            viewModel.delete(scanId)
+
+    }
+    // private fun choice function_or_Type(){
+
+           // }
+
 
 
 
@@ -183,12 +226,12 @@ class ScanFragment : Fragment() {
         //    when (group.checkedChipIds){
           //  checkedId ->
 
-            }
 
 
 
 
-            }}
+
+           }
 
 
 

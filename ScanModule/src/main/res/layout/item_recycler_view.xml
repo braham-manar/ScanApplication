@@ -3,42 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="60dp">
 
 
     <TextView
         android:id="@+id/TV_Code_Scan"
-        android:layout_width="369dp"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/TV_Phase"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:text="dfhf645656966666459995566656556hfg56" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/TV_Phase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="196dp"
-        android:text=" "
+        android:layout_marginEnd="8dp"
+        android:padding="5dp"
+        android:text=""
+        android:textColor="#ffffff"
+        android:background="#5E35B1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/TV_Code_Scan"
+        app:layout_constraintEnd_toStartOf="@+id/TV_Type"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="#888966"
-       />
+        tools:text="AR" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/TV_Type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" "
+        android:layout_marginEnd="8dp"
+        android:padding="5dp"
+       tools:background="#7CB342"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/TV_Code_Scan"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/IVdelete"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="#123456"/>
+        tools:text="AL" />
 
+
+    <ImageView
+        android:id="@+id/IVdelete"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="18dp"
+        android:src="@drawable/ic_baseline_delete_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#FF0000"
+        tools:tint="#FF0000" />
 </androidx.constraintlayout.widget.ConstraintLayout>

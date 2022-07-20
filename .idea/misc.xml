@@ -6,6 +6,7 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.19895833333333332" />
         <entry key="ScanModule/src/main/res/drawable/chip_background_color.xml" value="0.1638888888888889" />
         <entry key="ScanModule/src/main/res/drawable/chip_text_color.xml" value="0.1638888888888889" />
+        <entry key="ScanModule/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.13240740740740742" />
         <entry key="ScanModule/src/main/res/drawable/ic_box.xml" value="0.1638888888888889" />
         <entry key="ScanModule/src/main/res/drawable/ic_boxes.xml" value="0.11296296296296296" />
         <entry key="ScanModule/src/main/res/drawable/ic_cargo_box.xml" value="0.11296296296296296" />
@@ -15,8 +16,8 @@
         <entry key="ScanModule/src/main/res/drawable/ic_recu_avec.xml" value="0.11296296296296296" />
         <entry key="ScanModule/src/main/res/drawable/ic_refus.xml" value="0.11296296296296296" />
         <entry key="ScanModule/src/main/res/layout/activity_scan.xml" value="0.22" />
-        <entry key="ScanModule/src/main/res/layout/fragment_scan.xml" value="0.25" />
-        <entry key="ScanModule/src/main/res/layout/item_recycler_view.xml" value="0.21" />
+        <entry key="ScanModule/src/main/res/layout/fragment_scan.xml" value="0.1" />
+        <entry key="ScanModule/src/main/res/layout/item_recycler_view.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18385416666666668" />
       </map>
     </option>
@@ -26,5 +27,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>
