@@ -37,8 +37,13 @@ import kotlinx.coroutines.launch
 
 import com.example.scanmodule.util.ScanType
 import android.R
+import android.content.Context
+import android.content.DialogInterface
 import androidx.appcompat.app.ActionBar
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 
 
 @AndroidEntryPoint
@@ -46,12 +51,18 @@ import androidx.recyclerview.widget.RecyclerView
 class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
     lateinit var my_Adapter: ScanListAdapter
     lateinit var linearLayoutManager: LinearLayoutManager
+    lateinit var mContext : Context
 
     private lateinit var beepManager: BeepManager
     private var isScanOnPause : Boolean = false
     private var scanType : String= ScanType.CONFORM.description
     private var scanPhase : String= ScanPhase.RECEPTION.description
     private val viewModel: ScanViewModel by viewModels()
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mContext = context
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,6 +118,31 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
                 super.onScrollStateChanged(recyclerView, newState)
             }
         })
+
+        closeIV.setOnClickListener {
+
+                MaterialAlertDialogBuilder(mContext!!)
+                    .setTitle("Close")
+                    .setMessage("Do you want to close this ")
+                    .setNeutralButton("No", object : DialogInterface.OnClickListener{
+                        override fun onClick(Dialog: DialogInterface?, which: Int) {
+                            showSnackBar("Later")
+
+                        }
+                    })
+                    .setPositiveButton("OK", object : DialogInterface.OnClickListener{
+                        override fun onClick(Dialog: DialogInterface?, which: Int) {
+                            //val bundle : Bundle = Bundle()
+                          //  bundle.putParcelable(BUNDLE_HIT_KEY, hit)
+                            requireActivity().finish()
+                        }
+                    })
+                    .show() }
+
+
+
+
+        //
     }
      fun initrecycle(){
         linearLayoutManager= LinearLayoutManager(activity)
@@ -243,7 +279,12 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
 
     }
     // private fun choice function_or_Type(){
+    fun showSnackBar(msg:String){
 
+        view?.let { view->
+            Snackbar.make(view,msg, Snackbar.LENGTH_SHORT).show()
+        }
+    }
            // }
 
 

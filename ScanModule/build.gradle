@@ -67,6 +67,11 @@ dependencies {
     //Scan
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
+
     //camera
     //val camerax_version = "1.1.0"
     // The following line is optional, as the core library is included indirectly by camera-camera2

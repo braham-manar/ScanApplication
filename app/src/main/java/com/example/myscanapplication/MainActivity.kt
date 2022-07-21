@@ -13,9 +13,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        btn_scan.setOnClickListener {
+       // btn_scan.setOnClickListener {
             goToScanActivity()
-        }
+      //  }
 
 
 
@@ -25,5 +25,6 @@ class MainActivity : AppCompatActivity() {
     fun goToScanActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }

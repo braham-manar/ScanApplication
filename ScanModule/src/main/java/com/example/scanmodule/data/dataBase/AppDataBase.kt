@@ -17,7 +17,6 @@ abstract class AppDataBase:RoomDatabase() {
                 )
                     .allowMainThreadQueries()
                     .build()
-
             }
             return dbInstance as AppDataBase
         }
