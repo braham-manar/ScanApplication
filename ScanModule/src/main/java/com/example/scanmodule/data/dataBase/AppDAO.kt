@@ -2,6 +2,8 @@ package com.example.scanmodule.data.dataBase
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.scanmodule.data.dataBase.model.CodeScanEntity
+import com.example.scanmodule.data.dataBase.model.UserEntity
 
 @Dao
 interface AppDAO {
@@ -9,7 +11,7 @@ interface AppDAO {
     fun getRecords():List<UserEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun inserRecord(userEntity:UserEntity)
+    fun inserRecord(userEntity: UserEntity)
 
 
   //  ----------- scan -------------

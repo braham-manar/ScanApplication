@@ -28,7 +28,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.scanmodule.Constant.CAMERA_PERMISSION_REQUEST_CODE
 
-import com.example.scanmodule.data.dataBase.CodeScanEntity
+import com.example.scanmodule.data.dataBase.model.CodeScanEntity
 import com.example.scanmodule.ui.scan.adapter.ScanListAdapter
 import com.example.scanmodule.util.ScanPhase
 import kotlinx.coroutines.Dispatchers
@@ -36,11 +36,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 import com.example.scanmodule.util.ScanType
-import android.R
 import android.content.Context
 import android.content.DialogInterface
-import androidx.appcompat.app.ActionBar
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -266,7 +263,7 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
         Log.i("test_adapter_inte", "onItemClick: $position")
     }
 
-    override fun onDeleteButtonClicked(scanId:CodeScanEntity) {
+    override fun onDeleteButtonClicked(scanId: CodeScanEntity) {
 
             viewModel.delete(scanId)
 

@@ -1,6 +1,8 @@
 package com.example.scanmodule.data.dataBase
 
 import androidx.lifecycle.LiveData
+import com.example.scanmodule.data.dataBase.model.CodeScanEntity
+import com.example.scanmodule.data.dataBase.model.UserEntity
 import javax.inject.Inject
 
 class RoomRepository @Inject constructor(private val appDAO:AppDAO) {

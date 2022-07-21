@@ -2,7 +2,7 @@ package com.example.scanmodule.ui.scan
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.scanmodule.data.dataBase.CodeScanEntity
+import com.example.scanmodule.data.dataBase.model.CodeScanEntity
 import com.example.scanmodule.data.dataBase.RoomRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

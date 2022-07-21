@@ -1,7 +1,7 @@
 package com.example.scanmodule
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.scanmodule.data.dataBase.CodeScanEntity
+import com.example.scanmodule.data.dataBase.model.CodeScanEntity
 
 class MyDiffUtil (private val oldList:List<CodeScanEntity>, private val newList:List<CodeScanEntity>)
     :DiffUtil.Callback() {

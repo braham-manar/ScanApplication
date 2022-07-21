@@ -1,4 +1,4 @@
-package com.example.scanmodule.data.dataBase
+package com.example.scanmodule.data.dataBase.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.scanmodule.data.dataBase.CodeScanEntity
+import com.example.scanmodule.data.dataBase.model.CodeScanEntity
 
 class NewAdapter:RecyclerView.Adapter<NewAdapter.CodeScanViewHolder>() {
     private var oldCodeList: ArrayList<CodeScanEntity> = arrayListOf()

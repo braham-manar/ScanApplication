@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scanmodule.R
-import com.example.scanmodule.data.dataBase.CodeScanEntity
+import com.example.scanmodule.data.dataBase.model.CodeScanEntity
 import com.example.scanmodule.util.ScanPhase
 import com.example.scanmodule.util.ScanType
 
