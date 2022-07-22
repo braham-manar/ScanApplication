@@ -1,11 +1,12 @@
 package com.example.scanmodule.data.Api
 
-import com.example.scanmodule.data.dataBase.model.LoginUserEntity
-import com.example.scanmodule.data.remote.model.LoginResponse
-import retrofit2.Call
-import retrofit2.http.GET
+import com.example.scanmodule.data.Api.model.LoginResponse
+import com.example.scanmodule.data.Api.model.LoginRequest
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface ApiUserLogin {
-    @GET("posts")
-    fun getMail(): Call<List<LoginResponse>>
+
+    @POST("loginCollaborateur")
+    suspend fun loginCollaborateur(@Body loginRequest: LoginRequest): LoginResponse
 }

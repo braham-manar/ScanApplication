@@ -1,13 +1,17 @@
 package com.example.scanmodule.DaggerInjection
 
 import android.app.Application
+import com.example.scanmodule.data.Api.ApiUserLogin
 import com.example.scanmodule.data.dataBase.AppDAO
 import com.example.scanmodule.data.dataBase.AppDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
@@ -27,12 +31,18 @@ object AppModule {
     }
     private const val BASE_URL = "https://dev-api.box2home.xyz/api/"
 
-    @Singleton
-    @Provides
-    fun providesHttpLoggingInterceptor() = HttpLoggingInterceptor()
-        .apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
 
+    @Provides
+    @Singleton
+    fun provideBox2homeApi(): ApiUserLogin {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(OkHttpClient.Builder()
+                .addInterceptor(HttpLoggingInterceptor())
+                .build())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiUserLogin::class.java)
+    }
 
 }
