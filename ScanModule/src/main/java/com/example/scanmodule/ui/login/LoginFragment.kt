@@ -1,12 +1,14 @@
 package com.example.scanmodule.ui.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.scanmodule.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -43,7 +45,15 @@ class LoginFragment : Fragment() {
         viewModel.loginLiveData.observe(viewLifecycleOwner) { loginResponse ->
             login_progress.visibility = View.GONE
             Toast.makeText(requireContext(), loginResponse.message, Toast.LENGTH_SHORT).show()
+            Log.i("message_test", "there is " +loginResponse.message)
+            btn_login.setOnClickListener(){
+                  if (loginResponse.message=="Success"){
+                      Log.i("test_click", "login_btn: clicked ")
+                    findNavController().navigate(R.id.scanFragment)
+                }
+            }
         }
+
 
     }
 
