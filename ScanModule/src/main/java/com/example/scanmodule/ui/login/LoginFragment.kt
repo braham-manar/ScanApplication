@@ -46,11 +46,11 @@ class LoginFragment : Fragment() {
             login_progress.visibility = View.GONE
             Toast.makeText(requireContext(), loginResponse.message, Toast.LENGTH_SHORT).show()
             Log.i("message_test", "there is " +loginResponse.message)
-            btn_login.setOnClickListener(){
+
                   if (loginResponse.message=="Success"){
                       Log.i("test_click", "login_btn: clicked ")
                     findNavController().navigate(R.id.scanFragment)
-                }
+
             }
         }
 
