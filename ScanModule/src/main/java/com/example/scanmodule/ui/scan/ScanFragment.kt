@@ -38,7 +38,10 @@ import kotlinx.coroutines.launch
 import com.example.scanmodule.util.ScanType
 import android.content.Context
 import android.content.DialogInterface
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.scanmodule.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
@@ -101,7 +104,6 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
 
 
 
-
         recycle_view?.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -125,8 +127,7 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
                         override fun onClick(Dialog: DialogInterface?, which: Int) {
                             showSnackBar("Later")
 
-                        }
-                    })
+                        } })
                     .setPositiveButton("OK", object : DialogInterface.OnClickListener{
                         override fun onClick(Dialog: DialogInterface?, which: Int) {
                             //val bundle : Bundle = Bundle()
@@ -173,9 +174,12 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
                         scan_type = scanType , scan_date = System.currentTimeMillis(),
                     scan_phase=scanPhase)
                     viewModel.insertRecordCodeScan(codeScanEntity  )
-
                 }
+                if( scanType == ScanType.REFUS.description)
 
+                    findNavController().navigate(R.id.photosFragment)
+                if(scanType == ScanType.RESERVE.description)
+                    findNavController().navigate(R.id.photosFragment)
             }
         }
 
@@ -225,6 +229,8 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
 
                refusChip.id -> {
                    scanType = ScanType.REFUS.description
+
+
 
                    Log.i("test_chip", "refusChip")}
                   // TV_Type.setBackgroundColor(Color.parseColor("#EC9009"))}

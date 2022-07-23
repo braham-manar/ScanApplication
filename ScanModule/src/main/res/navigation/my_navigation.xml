@@ -15,4 +15,9 @@
         android:name="com.example.scanmodule.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/photosFragment"
+        android:name="com.example.scanmodule.other.photosFragment"
+        android:label="fragment_photos"
+        tools:layout="@layout/fragment_photos" />
 </navigation>

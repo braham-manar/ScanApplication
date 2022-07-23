@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -65,15 +67,18 @@ class ScanListAdapter : ListAdapter<CodeScanEntity,
          ScanType.CONFORM.description -> {
              rvHolder.tvScanType.setBackgroundColor(Color.parseColor( ScanType.CONFORM.color ))
              rvHolder.tvScanType.text = ScanType.CONFORM.code
+
          }
          ScanType.RESERVE.description -> {
              rvHolder.tvScanType.setBackgroundColor(Color.parseColor( ScanType.RESERVE.color ))
              rvHolder.tvScanType.text = ScanType.RESERVE.code
 
+
          }
          ScanType.REFUS.description ->{
              rvHolder.tvScanType.setBackgroundColor(Color.parseColor( ScanType.REFUS.color ))
              rvHolder.tvScanType.text = ScanType.REFUS.code
+
 
          } }
         when(currentScan.scan_phase)   {
