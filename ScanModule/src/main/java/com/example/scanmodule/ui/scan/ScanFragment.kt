@@ -229,6 +229,7 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
 
                   // TV_Type.setBackgroundColor(Color.RED)}
 
+
                refusChip.id -> {
                    scanType = ScanType.REFUS.description
 
