@@ -1,7 +1,7 @@
 package com.example.scanmodule.DaggerInjection
 
 import android.app.Application
-import com.example.scanmodule.data.Api.ApiUserLogin
+import com.example.scanmodule.data.Api.Box2homeApi
 import com.example.scanmodule.data.dataBase.AppDAO
 import com.example.scanmodule.data.dataBase.AppDataBase
 import dagger.Module
@@ -34,7 +34,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideBox2homeApi(): ApiUserLogin {
+    fun provideBox2homeApi(): Box2homeApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(OkHttpClient.Builder()
@@ -42,7 +42,7 @@ object AppModule {
                 .build())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ApiUserLogin::class.java)
+            .create(Box2homeApi::class.java)
     }
 
 }

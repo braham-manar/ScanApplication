@@ -38,7 +38,6 @@ import kotlinx.coroutines.launch
 import com.example.scanmodule.util.ScanType
 import android.content.Context
 import android.content.DialogInterface
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scanmodule.R
@@ -52,7 +51,6 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
     lateinit var my_Adapter: ScanListAdapter
     lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var mContext : Context
-
     private lateinit var beepManager: BeepManager
     private var isScanOnPause : Boolean = false
     private var scanType : String= ScanType.CONFORM.description
@@ -79,13 +77,15 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
         super.onViewCreated(view, savedInstanceState)
 
         checkCameraPermission()
+        Log.i("checkpermi", "checkpermission ")
         initScan()
         initrecycle()
 
 
 
         viewModel.scanDataLiveData.observe(viewLifecycleOwner, { scanList->
-            Log.i("test_live_data", "scan data: " + scanList.size)
+            Log.i("test_live_data_scan", "scan data: " + scanList)
+
          //   my_Adapter.setDataToAdapter(scanList )
             my_Adapter.submitList(scanList)
             scanNumb.text =  scanList.size.toString()
@@ -197,7 +197,7 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
 
     }
 
-    private fun checkCameraPermission(){
+   private fun checkCameraPermission(){
         if (ContextCompat.checkSelfPermission(requireActivity(),Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED ) {
             ActivityCompat.requestPermissions(
                 requireActivity(),

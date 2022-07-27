@@ -1,11 +1,11 @@
 package com.example.scanmodule.data.repository
 
-import com.example.scanmodule.data.Api.ApiUserLogin
+import com.example.scanmodule.data.Api.Box2homeApi
 import com.example.scanmodule.data.Api.model.LoginResponse
 import com.example.scanmodule.data.Api.model.LoginRequest
 import javax.inject.Inject
 
-class LoginRepository @Inject constructor(private val apiUserLogin: ApiUserLogin){
+class LoginRepository @Inject constructor(private val apiUserLogin: Box2homeApi){
 
 
     suspend fun loginRequest(loginRequest: LoginRequest): LoginResponse {

@@ -1,14 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".other.photosFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/titlePhoto"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#5F1473"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="DÉCLARER LITIGE"
+            android:textColor="#FBF8F9"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/closeIV"
+            app:layout_constraintEnd_toStartOf="@+id/sendTV"
+            app:layout_constraintStart_toEndOf="@+id/closeIV"
+            app:layout_constraintTop_toTopOf="@+id/closeIV" />
+
+        <ImageView
+            android:id="@+id/closeIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#5F1473"
+            android:clickable="true"
+            android:padding="15dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/sendTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#5F1473"
+            android:clickable="true"
+            android:padding="15dp"
+            android:src="@drawable/ic_baseline_send_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/titlePhoto"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="300dp"
+            >
+
+
+            <TextView
+                android:id="@+id/ajout_TV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:text="Ajouter des photos:"
+                android:textColor="#5F1473"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/photoIV_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/bg_add_photo"
+                android:clickable="true"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:src="@drawable/ic_baseline_add_a_photo_24"
+                app:layout_constraintBottom_toBottomOf="@+id/photoIV_2"
+                app:layout_constraintEnd_toStartOf="@+id/photoIV_2"
+                app:layout_constraintStart_toStartOf="@+id/ajout_TV"
+                app:layout_constraintTop_toTopOf="@+id/photoIV_2" />
+
+
+            <ImageView
+                android:id="@+id/photoIV_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_add_photo"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:src="@drawable/ic_baseline_add_a_photo_24"
+                app:layout_constraintBottom_toBottomOf="@+id/photoIV_3"
+                app:layout_constraintEnd_toStartOf="@+id/photoIV_3"
+                app:layout_constraintStart_toEndOf="@+id/photoIV_1"
+                app:layout_constraintTop_toTopOf="@+id/photoIV_3" />
+
+            <ImageView
+                android:id="@+id/photoIV_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_add_photo"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:src="@drawable/ic_baseline_add_a_photo_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/photoIV_2"
+                app:layout_constraintTop_toBottomOf="@+id/ajout_TV" />
+
+
+            <Spinner
+                android:id="@+id/media_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/photoIV_2" />
+
+            <Spinner
+                android:id="@+id/responsabilité_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="Media"
+                app:layout_constraintEnd_toEndOf="@+id/media_spinner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/media_spinner" />
+
+            <TextView
+                android:id="@+id/Observation_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:text="Observation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/responsabilité_spinner" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="#A3A5AA"
+                android:gravity="top|center"
+                tools:text="ghjklm"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Observation_id" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

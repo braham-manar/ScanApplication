@@ -1,7 +1,9 @@
 package com.example.scanmodule.data.dataBase
 
 import androidx.lifecycle.LiveData
+import com.example.scanmodule.data.Api.model.Responsibility
 import com.example.scanmodule.data.dataBase.model.CodeScanEntity
+import com.example.scanmodule.data.dataBase.model.ResponsabilityEntity
 import com.example.scanmodule.data.dataBase.model.UserEntity
 import javax.inject.Inject
 
@@ -17,15 +19,25 @@ class RoomRepository @Inject constructor(private val appDAO:AppDAO) {
        return  appDAO.getRecordsCodeScan()
 
     }
-       fun getRecordsCodeScanAsLiveData():LiveData<List<CodeScanEntity>>{
-       return  appDAO.getRecordsCodeScanAsLiveData()
+       fun getRecordsCodeScanAsLiveData():LiveData<List<CodeScanEntity>> {
+           return appDAO.getRecordsCodeScanAsLiveData()
 
-    }
+       }
+    fun getRecordsRespnsabiliteAsLiveData():LiveData<List<ResponsabilityEntity>> {
+           return appDAO.getRecordsRespnsabiliteAsLiveData()
+
+       }
         fun insertRecordCodeScan(codeScanEntity: CodeScanEntity){
             appDAO.inserRecordCodeScan(codeScanEntity)
+        }
+    fun inserResponsabilite(responsibility: List<ResponsabilityEntity>? ){
+            appDAO.inserResponsabilite(responsibility)
         }
         fun delete(codeScanEntity: CodeScanEntity){
             appDAO.delete(codeScanEntity)
 
     }
+
+
+
 }
