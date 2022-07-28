@@ -18,11 +18,11 @@
         android:text="Scan"
         android:textColor="#FBF8F9"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/closeIV"
+        app:layout_constraintBottom_toBottomOf="@+id/close_scan"
         app:layout_constraintEnd_toStartOf="@+id/confirmTV"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/closeIV"
-        app:layout_constraintTop_toTopOf="@+id/closeIV"
+        app:layout_constraintStart_toEndOf="@+id/close_scan"
+        app:layout_constraintTop_toTopOf="@+id/close_scan"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
@@ -295,7 +295,7 @@
         app:layout_constraintStart_toEndOf="@+id/titleBar" />
 
     <ImageView
-        android:id="@+id/closeIV"
+        android:id="@+id/close_scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#5F1473"

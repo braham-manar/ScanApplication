@@ -118,7 +118,7 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
             }
         })
 
-        closeIV.setOnClickListener {
+        close_scan.setOnClickListener {
 
                 MaterialAlertDialogBuilder(mContext!!)
                     .setTitle("Close")
@@ -132,8 +132,8 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
                         override fun onClick(Dialog: DialogInterface?, which: Int) {
                             //val bundle : Bundle = Bundle()
                           //  bundle.putParcelable(BUNDLE_HIT_KEY, hit)
-                            requireActivity().finish()
-                        }
+                           requireActivity().finish()
+                         }
                     })
                     .show() }
 
