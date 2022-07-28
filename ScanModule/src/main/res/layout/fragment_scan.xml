@@ -269,7 +269,7 @@
                 android:layout_height="50dp"
                 android:text="Refus"
                 android:textColor="@drawable/chip_text_color"
-                app:checkedIcon="@drawable/ic_degroupement"
+                app:checkedIcon="@drawable/ic_refus"
                 app:checkedIconEnabled="true"
                 app:checkedIconTint="#ffffff"
                 app:chipBackgroundColor="@drawable/chip_background_color"

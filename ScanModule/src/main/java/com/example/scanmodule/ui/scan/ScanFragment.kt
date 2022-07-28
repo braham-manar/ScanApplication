@@ -132,7 +132,7 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
                         override fun onClick(Dialog: DialogInterface?, which: Int) {
                             //val bundle : Bundle = Bundle()
                           //  bundle.putParcelable(BUNDLE_HIT_KEY, hit)
-                           requireActivity().finish()
+                          requireActivity().finish()
                          }
                     })
                     .show() }
@@ -175,11 +175,10 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
                     scan_phase=scanPhase)
                     viewModel.insertRecordCodeScan(codeScanEntity  )
                 }
-                if( scanType == ScanType.REFUS.description)
+                if( scanType == ScanType.REFUS.description || scanType == ScanType.RESERVE.description)
 
                     findNavController().navigate(R.id.photosFragment)
-                if(scanType == ScanType.RESERVE.description)
-                    findNavController().navigate(R.id.photosFragment)
+
             }
         }
 
@@ -225,20 +224,12 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
                    scanType = ScanType.RESERVE.description
 
                    Log.i("test_chip", "reserveChip")}
-
-
-                  // TV_Type.setBackgroundColor(Color.RED)}
-
-
+               // TV_Type.setBackgroundColor(Color.RED)}
 
                refusChip.id -> {
                    scanType = ScanType.REFUS.description
-
-
-
                    Log.i("test_chip", "refusChip")}
                   // TV_Type.setBackgroundColor(Color.parseColor("#EC9009"))}
-
            }
            }
 
@@ -292,22 +283,6 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
             Snackbar.make(view,msg, Snackbar.LENGTH_SHORT).show()
         }
     }
-           // }
-
-
-
-
-            /* if(group.checkedChipIds==receptionChip){
-
-                 }*/
-
-        //    when (group.checkedChipIds){
-          //  checkedId ->
-
-
-
-
-
 
            }
 

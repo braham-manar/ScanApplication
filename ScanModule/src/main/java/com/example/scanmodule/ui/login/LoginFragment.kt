@@ -1,5 +1,6 @@
 package com.example.scanmodule.ui.login
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -46,6 +47,15 @@ class LoginFragment : Fragment() {
             login_progress.visibility = View.GONE
             Toast.makeText(requireContext(), loginResponse.message, Toast.LENGTH_SHORT).show()
             Log.i("message_test", "there is " +loginResponse.message)
+            Log.i("message_test", "there is " + (loginResponse.Response?.value ?: ""))
+           //-------------------------
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return@observe
+            with (sharedPref.edit()) {
+                putString("token_key" , loginResponse.Response?.value )
+                apply()
+            }
+            //-------------------------
+
             if (loginResponse.message=="Success"){
                     findNavController().navigate(R.id.scanFragment)
                   }

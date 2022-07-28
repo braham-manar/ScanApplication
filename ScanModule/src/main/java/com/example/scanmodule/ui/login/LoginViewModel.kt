@@ -1,17 +1,22 @@
 package com.example.scanmodule.ui.login
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.scanmodule.data.Api.model.LoginResponse
 import com.example.scanmodule.data.Api.model.LoginRequest
+import com.example.scanmodule.data.Api.model.LoginResponse
 import com.example.scanmodule.data.repository.LoginRepository
+import com.example.scanmodule.other.photosFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository): ViewModel() {
@@ -23,6 +28,8 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
         viewModelScope.launch(Dispatchers.IO) {
             loginRepository.loginRequest(LoginRequest(mail,password)).apply {
                 Log.i("test_lo", "loginRequest: "+ (this.Response?.value ?: ""))
+
+
                 _loginLiveData.postValue(this)
             }
         }
