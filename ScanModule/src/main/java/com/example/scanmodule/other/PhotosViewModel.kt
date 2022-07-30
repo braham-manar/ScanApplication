@@ -9,5 +9,7 @@ import javax.inject.Inject
 class PhotosViewModel @Inject constructor(private val repository: RoomRepository): ViewModel(){
 
     val responsibilityDataLiveData  = repository.getRecordsRespnsabiliteAsLiveData()
+    val motifDataLiveData=repository.getRecordsMotifAsLiveData()
+
 
 }

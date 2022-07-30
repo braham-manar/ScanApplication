@@ -1,5 +1,6 @@
 package com.example.scanmodule.data.Api.model
 
+import com.example.scanmodule.data.Api.model.Login.Collaborateur
 import com.google.gson.annotations.SerializedName
 
 

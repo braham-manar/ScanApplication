@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.scanmodule.data.Api.model.Responsibility
 import com.example.scanmodule.data.dataBase.model.CodeScanEntity
+import com.example.scanmodule.data.dataBase.model.MotifEntity
 import com.example.scanmodule.data.dataBase.model.ResponsabilityEntity
 import com.example.scanmodule.data.dataBase.model.UserEntity
 
-@Database(entities = [UserEntity::class, CodeScanEntity::class, ResponsabilityEntity::class],version=1,exportSchema = false)
+@Database(entities = [UserEntity::class, CodeScanEntity::class, ResponsabilityEntity::class,MotifEntity::class],version=1,exportSchema = false)
 abstract class AppDataBase:RoomDatabase() {
     abstract fun getDAO():AppDAO
     companion object{

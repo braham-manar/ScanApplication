@@ -1,8 +1,8 @@
 package com.example.scanmodule.data.Api
 
 import com.example.scanmodule.data.Api.model.LoginResponse
-import com.example.scanmodule.data.Api.model.LoginRequest
-import com.example.scanmodule.data.Api.model.RequestResponsiblité
+import com.example.scanmodule.data.Api.model.Login.LoginRequest
+import com.example.scanmodule.data.Api.model.Motif.MotifResponse
 import com.example.scanmodule.data.Api.model.ResponseResponsibilité
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -16,6 +16,8 @@ interface Box2homeApi {
 
     @GET("stock/getResponsibleList")
     suspend fun getResponsibleList (@Header("x-auth-token") token: String): ResponseResponsibilité
+    @GET("stock/getMotifList")
+    suspend fun getMotifList (@Header("x-auth-token") token: String): MotifResponse
 
 
 

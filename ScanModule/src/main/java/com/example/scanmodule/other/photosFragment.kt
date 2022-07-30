@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.scanmodule.R
+import com.example.scanmodule.data.dataBase.model.MotifEntity
 import com.example.scanmodule.data.dataBase.model.ResponsabilityEntity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -31,8 +32,7 @@ import kotlin.math.log
 
 @AndroidEntryPoint
 class photosFragment : Fragment() {
-    val REQUEST_CODE_CAMERA = 10
-    val REQUEST_CODE_GALLERY = 11
+
     private val viewModelPhoto: PhotosViewModel by viewModels()
     private val items = arrayOf("Camera", "Gallery")
 
@@ -63,6 +63,10 @@ class photosFragment : Fragment() {
         viewModelPhoto.responsibilityDataLiveData.observe(viewLifecycleOwner, { observeList->
             Log.i("test_live_data_responsibility", "resp " + observeList)
             initSpinner(observeList as MutableList<ResponsabilityEntity>)
+       })
+        viewModelPhoto.motifDataLiveData.observe(viewLifecycleOwner, { observeList->
+            Log.i("test_live_data_motif", "motif" + observeList)
+            initSpinnerMotif(observeList as MutableList<MotifEntity>)
        })
 
         btn_close_litigation.setOnClickListener {
@@ -118,6 +122,17 @@ class photosFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
     responsabilité_spinner.adapter = adapter
+}
+    private fun initSpinnerMotif(listMotif :  MutableList<MotifEntity>){
+
+
+        val adapter: ArrayAdapter<MotifEntity> = ArrayAdapter<MotifEntity>(
+            requireContext(),
+            android.R.layout.simple_spinner_item, listMotif
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+    motif_spinner.adapter = adapter
 }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

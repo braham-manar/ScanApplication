@@ -129,7 +129,7 @@
 
 
             <com.tiper.MaterialSpinner
-                android:id="@+id/media_spinner"
+                android:id="@+id/motif_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -150,9 +150,9 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:autofillHints="Media"
-                app:layout_constraintEnd_toEndOf="@+id/media_spinner"
+                app:layout_constraintEnd_toEndOf="@+id/motif_spinner"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/media_spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/motif_spinner" />
 
             <TextView
                 android:id="@+id/Observation_id"

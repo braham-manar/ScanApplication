@@ -21,7 +21,7 @@
         <entry key="ScanModule/src/main/res/layout/action_bar_layout.xml" value="0.11527777777777778" />
         <entry key="ScanModule/src/main/res/layout/activity_scan.xml" value="0.15611814345991562" />
         <entry key="ScanModule/src/main/res/layout/fragment_login.xml" value="0.11435185185185186" />
-        <entry key="ScanModule/src/main/res/layout/fragment_photos.xml" value="0.22" />
+        <entry key="ScanModule/src/main/res/layout/fragment_photos.xml" value="0.1" />
         <entry key="ScanModule/src/main/res/layout/fragment_photos_new.xml" value="0.16" />
         <entry key="ScanModule/src/main/res/layout/fragment_scan.xml" value="0.24369747899159663" />
         <entry key="ScanModule/src/main/res/layout/item_recycler_view.xml" value="0.1" />

@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
        val token = getTokenFromPref(this)
         Log.i("test_pref", "getTokenFromPref: "+token)
         viewModel.getResponsibilité(token)
+        viewModel.getMotif(token)
 
 
 }}

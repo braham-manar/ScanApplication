@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.scanmodule.data.Api.model.Responsibility
 import com.example.scanmodule.data.dataBase.model.CodeScanEntity
+import com.example.scanmodule.data.dataBase.model.MotifEntity
 import com.example.scanmodule.data.dataBase.model.ResponsabilityEntity
 import com.example.scanmodule.data.dataBase.model.UserEntity
 
@@ -37,8 +38,13 @@ interface AppDAO {
     //  ----------- scan -------------
     @Query("SELECT * FROM Responsibilité ")
     fun getRecordsRespnsabiliteAsLiveData():LiveData<List<ResponsabilityEntity>>
+    @Query("SELECT * FROM motif ")
+    fun getRecordsMotifAsLiveData():LiveData<List<MotifEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserResponsabilite(responsibility: List<ResponsabilityEntity>? )
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun inserMotif(motif: List<MotifEntity>?)
 
 }

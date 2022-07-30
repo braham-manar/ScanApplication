@@ -1,8 +1,6 @@
 package com.example.scanmodule.data.Respository
 
-import android.util.Log
 import com.example.scanmodule.data.Api.Box2homeApi
-import com.example.scanmodule.data.Api.model.RequestResponsiblité
 import com.example.scanmodule.data.Api.model.ResponseResponsibilité
 import com.example.scanmodule.data.Api.model.responsibilityToResponsabilityEntity
 

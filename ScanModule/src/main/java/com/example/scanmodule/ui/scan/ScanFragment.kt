@@ -174,11 +174,11 @@ class ScanFragment : Fragment() ,ScanListAdapter.AdapterInteraction{
                         scan_type = scanType , scan_date = System.currentTimeMillis(),
                     scan_phase=scanPhase)
                     viewModel.insertRecordCodeScan(codeScanEntity  )
-                }
+
                 if( scanType == ScanType.REFUS.description || scanType == ScanType.RESERVE.description)
 
                     findNavController().navigate(R.id.photosFragment)
-
+            }
             }
         }
 
