@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import com.example.scanmodule.R
 import com.example.scanmodule.ui.scan.ScanViewModel
+import com.example.scanmodule.util.SharedPreferencesUtil
 import com.example.scanmodule.util.getTokenFromPref
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -23,10 +24,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_scan)
 
     //    viewModel.getResponsibilité("yU1qVziJ+jlB4+bNtteBt/82YAxokE5d6vYvntwfP/EN760B0cnfMSnnCyM91WLMJtE=")
-       val token = getTokenFromPref(this)
+        val token = SharedPreferencesUtil.getTokenFromPreference (applicationContext)
         Log.i("test_pref", "getTokenFromPref: "+token)
         viewModel.getResponsibilité(token)
         viewModel.getMotif(token)
+
 
 
 }}

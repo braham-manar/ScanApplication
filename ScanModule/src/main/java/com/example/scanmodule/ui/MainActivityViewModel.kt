@@ -1,5 +1,6 @@
 package com.example.scanmodule.ui
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -30,6 +31,7 @@ class MainActivityViewModel  @Inject constructor(
     fun getMotif(token: String){
         viewModelScope.launch(Dispatchers.IO) {
             motifRespository.motif(token)
+
         }
     }
 

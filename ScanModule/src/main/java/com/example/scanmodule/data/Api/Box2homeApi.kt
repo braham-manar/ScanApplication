@@ -16,7 +16,7 @@ interface Box2homeApi {
 
     @GET("stock/getResponsibleList")
     suspend fun getResponsibleList (@Header("x-auth-token") token: String): ResponseResponsibilité
-    @GET("stock/getMotifList")
+    @GET("stock/getLitigationStatusList")
     suspend fun getMotifList (@Header("x-auth-token") token: String): MotifResponse
 
 

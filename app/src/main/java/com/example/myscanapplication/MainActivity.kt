@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import com.example.scanmodule.ui.MainActivity
+import com.example.scanmodule.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun goToScanActivity() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }

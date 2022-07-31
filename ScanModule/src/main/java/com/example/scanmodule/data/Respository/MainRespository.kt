@@ -1,5 +1,6 @@
 package com.example.scanmodule.data.Respository
 
+import android.util.Log
 import com.example.scanmodule.data.Api.Box2homeApi
 import com.example.scanmodule.data.Api.model.ResponseResponsibilité
 import com.example.scanmodule.data.Api.model.responsibilityToResponsabilityEntity
@@ -19,7 +20,7 @@ class MainRespository @Inject constructor(
                     responsability.responsibilityToResponsabilityEntity(responsability)
 
                 })
-              //  Log.i("tokenrespon", "res:"+responsibilité(token))
+                //Log.i("tokenrespon", "res:"+responsibilité(token))
             }
         } catch (e: Exception) {
             ResponseResponsibilité(400,"erreur",null)

@@ -3,14 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@+id/scanFragment">
 
 
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.scanmodule.ui.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+
     <fragment
         android:id="@+id/scanFragment"
         android:name="com.example.scanmodule.ui.scan.ScanFragment"

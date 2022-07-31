@@ -1,5 +1,6 @@
 package com.example.scanmodule.data.Respository
 
+import android.util.Log
 import com.example.scanmodule.data.Api.Box2homeApi
 import com.example.scanmodule.data.Api.model.Motif.MotifResponse
 import com.example.scanmodule.data.Api.model.Motif.motifToMotifEntity
@@ -15,8 +16,8 @@ class MotifRespository @Inject constructor(private val apiMotif: Box2homeApi,
                 apiMotif.getMotifList(token).apply {
                     appDAO.inserMotif( this.Response?.map { motif ->
                         motif.motifToMotifEntity(motif)
-
                     })
+                    Log.i("tokenmotif", "res:"+motif(token))
 
                 }
             } catch (e: Exception) {
